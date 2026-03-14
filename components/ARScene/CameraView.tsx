@@ -336,8 +336,8 @@ export function CameraView({ onCapture, onBack, hideUI = false }: CameraViewProp
         <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none">
           <span
             key={countdown}
-            className="text-white text-[120px] sm:text-[160px] font-bold animate-ping"
-            style={{ animationDuration: '0.8s', textShadow: '0 0 40px rgba(0,0,0,0.5)' }}
+            className="text-white text-[120px] sm:text-[160px] font-bold countdown-pop"
+            style={{ textShadow: '0 0 40px rgba(0,0,0,0.5)' }}
           >
             {countdown}
           </span>
