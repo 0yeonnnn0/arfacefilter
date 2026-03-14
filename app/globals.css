@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Use dvh (dynamic viewport height) where supported — handles mobile address bar */
+@supports (height: 100dvh) {
+  .h-screen { height: 100dvh !important; }
+  .min-h-screen { min-height: 100dvh !important; }
+}
+
+/* Safe area insets for notch/home-indicator */
+.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
