@@ -9,6 +9,7 @@ import {
 
 interface CameraViewProps {
   onCapture: (faceCanvas: HTMLCanvasElement) => void;
+  onBack?: () => void;
   hideUI?: boolean;
 }
 
@@ -36,7 +37,7 @@ function computePixelCrop(landmarks: NormalizedLandmark[], vw: number, vh: numbe
   return { left, top, side };
 }
 
-export function CameraView({ onCapture, hideUI = false }: CameraViewProps) {
+export function CameraView({ onCapture, onBack, hideUI = false }: CameraViewProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const faceMeshRef = useRef<FaceMeshInstance | null>(null);
@@ -270,6 +271,24 @@ export function CameraView({ onCapture, hideUI = false }: CameraViewProps) {
               </>
             )}
           </div>
+        </div>
+      )}
+
+      {/* Back button */}
+      {!hideUI && onBack && (
+        <div
+          className="absolute top-0 left-0 z-20"
+          style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}
+        >
+          <button
+            onClick={onBack}
+            className="text-white/70 active:text-white text-sm flex items-center gap-1 transition-colors p-3 touch-manipulation"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            돌아가기
+          </button>
         </div>
       )}
 

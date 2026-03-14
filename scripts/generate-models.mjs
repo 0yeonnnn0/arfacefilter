@@ -265,6 +265,340 @@ function buildPenguin() {
   return parts;
 }
 
+// ==================== FOX ====================
+function buildFox() {
+  const parts = [];
+  // Head
+  parts.push({ geo: sphere(0.68, 24, 20, 1, 1, 0.95), pos: [0, 1.12, 0], color: w });
+  // Pointy ears — tall triangles
+  parts.push({ geo: cone(0.14, 0.5, 12), pos: [-0.35, 1.95, 0], color: w, rot: [0.05, 0, 0.2] });
+  parts.push({ geo: cone(0.14, 0.5, 12), pos: [0.35, 1.95, 0], color: w, rot: [0.05, 0, -0.2] });
+  // Inner ears
+  parts.push({ geo: cone(0.08, 0.3, 10), pos: [-0.35, 1.9, 0.05], color: w, rot: [0.05, 0, 0.2] });
+  parts.push({ geo: cone(0.08, 0.3, 10), pos: [0.35, 1.9, 0.05], color: w, rot: [0.05, 0, -0.2] });
+  // Snout — pointy
+  parts.push({ geo: sphere(0.18, 12, 10, 0.6, 0.8, 1.2), pos: [0, 0.88, 0.55], color: w });
+  parts.push({ geo: sphere(0.06, 8, 6), pos: [0, 0.9, 0.72], color: w }); // nose
+  // Body — slim
+  parts.push({ geo: sphere(0.38, 16, 14, 0.8), pos: [0, 0.22, 0], color: w });
+  // Legs
+  parts.push({ geo: cylinder(0.08, 0.09, 0.25, 10), pos: [-0.17, -0.02, 0.1], color: w });
+  parts.push({ geo: cylinder(0.08, 0.09, 0.25, 10), pos: [0.17, -0.02, 0.1], color: w });
+  parts.push({ geo: cylinder(0.09, 0.1, 0.25, 10), pos: [-0.19, -0.02, -0.1], color: w });
+  parts.push({ geo: cylinder(0.09, 0.1, 0.25, 10), pos: [0.19, -0.02, -0.1], color: w });
+  // Paws
+  parts.push({ geo: sphere(0.08, 10, 8), pos: [-0.17, -0.12, 0.1], color: w });
+  parts.push({ geo: sphere(0.08, 10, 8), pos: [0.17, -0.12, 0.1], color: w });
+  parts.push({ geo: sphere(0.08, 10, 8), pos: [-0.19, -0.12, -0.1], color: w });
+  parts.push({ geo: sphere(0.08, 10, 8), pos: [0.19, -0.12, -0.1], color: w });
+  // Big fluffy tail
+  for (let i = 0; i < 8; i++) {
+    const t = i / 7;
+    const r = 0.08 + Math.sin(t * Math.PI) * 0.12;
+    parts.push({ geo: sphere(r, 10, 8), pos: [0, 0.2 + t * 0.55, -0.35 - Math.sin(t * Math.PI * 0.7) * 0.35], color: w });
+  }
+  return parts;
+}
+
+// ==================== PANDA ====================
+function buildPanda() {
+  const parts = [];
+  // Head — big round
+  parts.push({ geo: sphere(0.75, 24, 20), pos: [0, 1.15, 0], color: w });
+  // Round ears
+  parts.push({ geo: sphere(0.22, 12, 10), pos: [-0.48, 1.82, 0], color: w });
+  parts.push({ geo: sphere(0.22, 12, 10), pos: [0.48, 1.82, 0], color: w });
+  // Eye patches (slightly raised areas around eyes)
+  parts.push({ geo: sphere(0.2, 10, 8, 0.7, 1.2, 0.5), pos: [-0.28, 1.25, 0.5], color: w });
+  parts.push({ geo: sphere(0.2, 10, 8, 0.7, 1.2, 0.5), pos: [0.28, 1.25, 0.5], color: w });
+  // Snout
+  parts.push({ geo: sphere(0.18, 12, 10, 0.6, 0.9, 0.8), pos: [0, 0.9, 0.58], color: w });
+  // Body — chubby round
+  parts.push({ geo: sphere(0.5, 16, 14, 0.85), pos: [0, 0.18, 0], color: w });
+  // Arms
+  parts.push({ geo: cylinder(0.14, 0.15, 0.3, 10), pos: [-0.35, 0.08, 0.08], color: w, rot: [0, 0, 0.2] });
+  parts.push({ geo: cylinder(0.14, 0.15, 0.3, 10), pos: [0.35, 0.08, 0.08], color: w, rot: [0, 0, -0.2] });
+  // Legs
+  parts.push({ geo: cylinder(0.15, 0.16, 0.28, 10), pos: [-0.24, -0.08, -0.06], color: w });
+  parts.push({ geo: cylinder(0.15, 0.16, 0.28, 10), pos: [0.24, -0.08, -0.06], color: w });
+  // Paws
+  parts.push({ geo: sphere(0.13, 10, 8), pos: [-0.35, -0.1, 0.08], color: w });
+  parts.push({ geo: sphere(0.13, 10, 8), pos: [0.35, -0.1, 0.08], color: w });
+  parts.push({ geo: sphere(0.14, 10, 8), pos: [-0.24, -0.18, -0.06], color: w });
+  parts.push({ geo: sphere(0.14, 10, 8), pos: [0.24, -0.18, -0.06], color: w });
+  // Tiny tail
+  parts.push({ geo: sphere(0.08, 8, 6), pos: [0, 0.12, -0.5], color: w });
+  return parts;
+}
+
+// ==================== FROG ====================
+function buildFrog() {
+  const parts = [];
+  // Head — wide and flat
+  parts.push({ geo: sphere(0.7, 24, 20, 0.7, 1.2, 1), pos: [0, 1.0, 0], color: w });
+  // Big bulging eyes on top
+  parts.push({ geo: sphere(0.22, 14, 12), pos: [-0.35, 1.5, 0.2], color: w });
+  parts.push({ geo: sphere(0.22, 14, 12), pos: [0.35, 1.5, 0.2], color: w });
+  // Eye pupils (smaller spheres)
+  parts.push({ geo: sphere(0.12, 10, 8), pos: [-0.35, 1.52, 0.38], color: w });
+  parts.push({ geo: sphere(0.12, 10, 8), pos: [0.35, 1.52, 0.38], color: w });
+  // Wide mouth area
+  parts.push({ geo: sphere(0.3, 14, 10, 0.4, 1.3, 0.8), pos: [0, 0.75, 0.45], color: w });
+  // Body — pudgy and round
+  parts.push({ geo: sphere(0.45, 16, 14, 0.7, 1, 0.9), pos: [0, 0.2, 0], color: w });
+  // Front legs — short
+  parts.push({ geo: cylinder(0.09, 0.1, 0.2, 10), pos: [-0.25, -0.02, 0.2], color: w, rot: [0.3, 0, 0.2] });
+  parts.push({ geo: cylinder(0.09, 0.1, 0.2, 10), pos: [0.25, -0.02, 0.2], color: w, rot: [0.3, 0, -0.2] });
+  // Back legs — big and bent (frog-like)
+  parts.push({ geo: sphere(0.16, 10, 8, 1.2, 0.7, 1), pos: [-0.32, -0.05, -0.18], color: w });
+  parts.push({ geo: sphere(0.16, 10, 8, 1.2, 0.7, 1), pos: [0.32, -0.05, -0.18], color: w });
+  // Feet — wide webbed
+  parts.push({ geo: sphere(0.12, 10, 8, 0.3, 1.2, 1.4), pos: [-0.25, -0.12, 0.25], color: w });
+  parts.push({ geo: sphere(0.12, 10, 8, 0.3, 1.2, 1.4), pos: [0.25, -0.12, 0.25], color: w });
+  parts.push({ geo: sphere(0.14, 10, 8, 0.3, 1, 1.5), pos: [-0.35, -0.12, -0.2], color: w });
+  parts.push({ geo: sphere(0.14, 10, 8, 0.3, 1, 1.5), pos: [0.35, -0.12, -0.2], color: w });
+  return parts;
+}
+
+// ==================== OWL ====================
+function buildOwl() {
+  const parts = [];
+  // Head — round
+  parts.push({ geo: sphere(0.7, 24, 20), pos: [0, 1.15, 0], color: w });
+  // Ear tufts — small pointed horns
+  parts.push({ geo: cone(0.1, 0.3, 10), pos: [-0.35, 1.85, 0], color: w, rot: [0, 0, 0.25] });
+  parts.push({ geo: cone(0.1, 0.3, 10), pos: [0.35, 1.85, 0], color: w, rot: [0, 0, -0.25] });
+  // Big eye circles (facial disc)
+  parts.push({ geo: sphere(0.25, 14, 12, 0.5, 1, 0.5), pos: [-0.25, 1.2, 0.5], color: w });
+  parts.push({ geo: sphere(0.25, 14, 12, 0.5, 1, 0.5), pos: [0.25, 1.2, 0.5], color: w });
+  // Eyes
+  parts.push({ geo: sphere(0.12, 10, 8), pos: [-0.25, 1.22, 0.62], color: w });
+  parts.push({ geo: sphere(0.12, 10, 8), pos: [0.25, 1.22, 0.62], color: w });
+  // Beak — small triangle
+  parts.push({ geo: cone(0.06, 0.15, 8), pos: [0, 1.0, 0.65], color: w, rot: [1.3, 0, 0] });
+  // Body — tall oval
+  parts.push({ geo: sphere(0.42, 16, 14, 1.0, 0.9, 0.8), pos: [0, 0.2, 0], color: w });
+  // Wings — flattened
+  parts.push({ geo: sphere(0.1, 10, 8, 1.6, 0.3, 1.2), pos: [-0.42, 0.3, 0], color: w, rot: [0, 0, 0.15] });
+  parts.push({ geo: sphere(0.1, 10, 8, 1.6, 0.3, 1.2), pos: [0.42, 0.3, 0], color: w, rot: [0, 0, -0.15] });
+  // Feet — small claws
+  parts.push({ geo: sphere(0.1, 8, 6, 0.4, 0.7, 1.2), pos: [-0.15, -0.18, 0.1], color: w });
+  parts.push({ geo: sphere(0.1, 8, 6, 0.4, 0.7, 1.2), pos: [0.15, -0.18, 0.1], color: w });
+  // Tail feathers
+  parts.push({ geo: sphere(0.1, 8, 6, 1.2, 0.3, 0.8), pos: [0, -0.05, -0.35], color: w });
+  return parts;
+}
+
+// ==================== LION ====================
+function buildLion() {
+  const parts = [];
+  // Head
+  parts.push({ geo: sphere(0.65, 24, 20), pos: [0, 1.12, 0], color: w });
+  // Mane — ring of spheres around head
+  for (let i = 0; i < 12; i++) {
+    const angle = (i / 12) * Math.PI * 2;
+    const x = Math.cos(angle) * 0.65;
+    const y = 1.3 + Math.sin(angle) * 0.45;
+    const z = Math.sin(angle) * 0.15 - 0.1;
+    parts.push({ geo: sphere(0.2, 10, 8), pos: [x, y, z], color: w });
+  }
+  // Ears (peeking through mane)
+  parts.push({ geo: sphere(0.12, 10, 8), pos: [-0.52, 1.75, 0.05], color: w });
+  parts.push({ geo: sphere(0.12, 10, 8), pos: [0.52, 1.75, 0.05], color: w });
+  // Snout
+  parts.push({ geo: sphere(0.2, 12, 10, 0.65, 1, 0.85), pos: [0, 0.85, 0.5], color: w });
+  parts.push({ geo: sphere(0.07, 8, 6), pos: [0, 0.9, 0.68], color: w }); // nose
+  // Body — strong
+  parts.push({ geo: sphere(0.45, 16, 14, 0.8), pos: [0, 0.2, 0], color: w });
+  // Legs
+  parts.push({ geo: cylinder(0.11, 0.12, 0.28, 10), pos: [-0.2, -0.02, 0.12], color: w });
+  parts.push({ geo: cylinder(0.11, 0.12, 0.28, 10), pos: [0.2, -0.02, 0.12], color: w });
+  parts.push({ geo: cylinder(0.12, 0.13, 0.28, 10), pos: [-0.22, -0.02, -0.12], color: w });
+  parts.push({ geo: cylinder(0.12, 0.13, 0.28, 10), pos: [0.22, -0.02, -0.12], color: w });
+  // Paws
+  parts.push({ geo: sphere(0.11, 10, 8), pos: [-0.2, -0.13, 0.12], color: w });
+  parts.push({ geo: sphere(0.11, 10, 8), pos: [0.2, -0.13, 0.12], color: w });
+  parts.push({ geo: sphere(0.11, 10, 8), pos: [-0.22, -0.13, -0.12], color: w });
+  parts.push({ geo: sphere(0.11, 10, 8), pos: [0.22, -0.13, -0.12], color: w });
+  // Tail with tuft
+  for (let i = 0; i < 6; i++) {
+    const t = i / 5;
+    const r = i === 5 ? 0.1 : 0.05;
+    parts.push({ geo: sphere(r, 8, 6), pos: [0, 0.22 + t * 0.5, -0.42 - Math.sin(t * Math.PI * 0.6) * 0.25], color: w });
+  }
+  return parts;
+}
+
+// ==================== DUCK ====================
+function buildDuck() {
+  const parts = [];
+  // Head — round
+  parts.push({ geo: sphere(0.55, 24, 20), pos: [0, 1.15, 0], color: w });
+  // Bill — flat wide
+  parts.push({ geo: sphere(0.15, 12, 10, 0.35, 1.2, 0.9), pos: [0, 0.95, 0.55], color: w });
+  parts.push({ geo: sphere(0.12, 10, 8, 0.3, 1.1, 0.8), pos: [0, 0.9, 0.6], color: w });
+  // Eyes bumps
+  parts.push({ geo: sphere(0.1, 10, 8), pos: [-0.25, 1.28, 0.35], color: w });
+  parts.push({ geo: sphere(0.1, 10, 8), pos: [0.25, 1.28, 0.35], color: w });
+  // Body — oval
+  parts.push({ geo: sphere(0.48, 16, 14, 0.75, 1, 1.1), pos: [0, 0.25, 0], color: w });
+  // Wings — folded at sides
+  parts.push({ geo: sphere(0.1, 10, 8, 1.4, 0.35, 1.1), pos: [-0.4, 0.3, -0.05], color: w, rot: [0, 0, 0.15] });
+  parts.push({ geo: sphere(0.1, 10, 8, 1.4, 0.35, 1.1), pos: [0.4, 0.3, -0.05], color: w, rot: [0, 0, -0.15] });
+  // Feet — flat webbed
+  parts.push({ geo: sphere(0.12, 10, 8, 0.25, 0.9, 1.4), pos: [-0.15, -0.15, 0.15], color: w });
+  parts.push({ geo: sphere(0.12, 10, 8, 0.25, 0.9, 1.4), pos: [0.15, -0.15, 0.15], color: w });
+  // Tail — small uptick
+  parts.push({ geo: sphere(0.1, 8, 6, 0.8, 0.5, 1), pos: [0, 0.35, -0.45], color: w, rot: [-0.4, 0, 0] });
+  parts.push({ geo: sphere(0.08, 8, 6, 0.8, 0.5, 1), pos: [0, 0.42, -0.48], color: w, rot: [-0.5, 0, 0] });
+  return parts;
+}
+
+// ==================== HAMSTER ====================
+function buildHamster() {
+  const parts = [];
+  // Head — round and big
+  parts.push({ geo: sphere(0.72, 24, 20), pos: [0, 1.1, 0], color: w });
+  // Big cheeks — puffy!
+  parts.push({ geo: sphere(0.28, 12, 10), pos: [-0.48, 0.95, 0.25], color: w });
+  parts.push({ geo: sphere(0.28, 12, 10), pos: [0.48, 0.95, 0.25], color: w });
+  // Small round ears
+  parts.push({ geo: sphere(0.15, 10, 8), pos: [-0.42, 1.72, 0], color: w });
+  parts.push({ geo: sphere(0.15, 10, 8), pos: [0.42, 1.72, 0], color: w });
+  // Inner ears
+  parts.push({ geo: sphere(0.08, 8, 6), pos: [-0.42, 1.72, 0.08], color: w });
+  parts.push({ geo: sphere(0.08, 8, 6), pos: [0.42, 1.72, 0.08], color: w });
+  // Nose
+  parts.push({ geo: sphere(0.06, 8, 6), pos: [0, 0.95, 0.65], color: w });
+  // Body — round and pudgy
+  parts.push({ geo: sphere(0.42, 16, 14, 0.7), pos: [0, 0.22, 0], color: w });
+  // Tiny arms
+  parts.push({ geo: cylinder(0.08, 0.09, 0.18, 10), pos: [-0.25, 0.08, 0.18], color: w, rot: [0.3, 0, 0.3] });
+  parts.push({ geo: cylinder(0.08, 0.09, 0.18, 10), pos: [0.25, 0.08, 0.18], color: w, rot: [0.3, 0, -0.3] });
+  // Tiny paws
+  parts.push({ geo: sphere(0.07, 8, 6), pos: [-0.3, 0.0, 0.25], color: w });
+  parts.push({ geo: sphere(0.07, 8, 6), pos: [0.3, 0.0, 0.25], color: w });
+  // Back feet
+  parts.push({ geo: sphere(0.1, 8, 6, 0.5, 0.8, 1.1), pos: [-0.2, -0.1, 0.05], color: w });
+  parts.push({ geo: sphere(0.1, 8, 6, 0.5, 0.8, 1.1), pos: [0.2, -0.1, 0.05], color: w });
+  // Tiny tail
+  parts.push({ geo: sphere(0.05, 6, 4), pos: [0, 0.15, -0.4], color: w });
+  return parts;
+}
+
+// ==================== ELEPHANT ====================
+function buildElephant() {
+  const parts = [];
+  // Head — large
+  parts.push({ geo: sphere(0.72, 24, 20), pos: [0, 1.15, 0], color: w });
+  // Big floppy ears
+  parts.push({ geo: sphere(0.3, 14, 12, 1.2, 0.3, 1), pos: [-0.7, 1.1, 0.05], color: w });
+  parts.push({ geo: sphere(0.3, 14, 12, 1.2, 0.3, 1), pos: [0.7, 1.1, 0.05], color: w });
+  // Trunk — chain of spheres going down
+  for (let i = 0; i < 7; i++) {
+    const t = i / 6;
+    const r = 0.12 - t * 0.04;
+    const y = 0.85 - t * 0.55;
+    const z = 0.6 + Math.sin(t * Math.PI * 0.4) * 0.15;
+    parts.push({ geo: sphere(r, 10, 8), pos: [0, y, z], color: w });
+  }
+  // Body — big and strong
+  parts.push({ geo: sphere(0.52, 16, 14, 0.85), pos: [0, 0.15, 0], color: w });
+  // Legs — thick
+  parts.push({ geo: cylinder(0.14, 0.15, 0.3, 10), pos: [-0.25, -0.08, 0.15], color: w });
+  parts.push({ geo: cylinder(0.14, 0.15, 0.3, 10), pos: [0.25, -0.08, 0.15], color: w });
+  parts.push({ geo: cylinder(0.14, 0.15, 0.3, 10), pos: [-0.25, -0.08, -0.15], color: w });
+  parts.push({ geo: cylinder(0.14, 0.15, 0.3, 10), pos: [0.25, -0.08, -0.15], color: w });
+  // Feet
+  parts.push({ geo: sphere(0.13, 10, 8, 0.4), pos: [-0.25, -0.2, 0.15], color: w });
+  parts.push({ geo: sphere(0.13, 10, 8, 0.4), pos: [0.25, -0.2, 0.15], color: w });
+  parts.push({ geo: sphere(0.13, 10, 8, 0.4), pos: [-0.25, -0.2, -0.15], color: w });
+  parts.push({ geo: sphere(0.13, 10, 8, 0.4), pos: [0.25, -0.2, -0.15], color: w });
+  // Tail
+  for (let i = 0; i < 4; i++) {
+    const t = i / 3;
+    parts.push({ geo: sphere(0.04, 6, 4), pos: [0, 0.15 + t * 0.2, -0.5 - t * 0.1], color: w });
+  }
+  return parts;
+}
+
+// ==================== UNICORN ====================
+function buildUnicorn() {
+  const parts = [];
+  // Head
+  parts.push({ geo: sphere(0.65, 24, 20), pos: [0, 1.12, 0], color: w });
+  // Horn — spiral-like cone
+  parts.push({ geo: cone(0.08, 0.55, 12), pos: [0, 1.85, 0.1], color: w, rot: [0.2, 0, 0] });
+  // Ears
+  parts.push({ geo: cone(0.08, 0.22, 10), pos: [-0.35, 1.75, -0.05], color: w, rot: [0, 0, 0.3] });
+  parts.push({ geo: cone(0.08, 0.22, 10), pos: [0.35, 1.75, -0.05], color: w, rot: [0, 0, -0.3] });
+  // Mane — flowing spheres on top
+  for (let i = 0; i < 6; i++) {
+    const t = i / 5;
+    parts.push({ geo: sphere(0.1 + Math.sin(t * Math.PI) * 0.04, 8, 6), pos: [0, 1.5 - t * 0.7, -0.35 - t * 0.15], color: w });
+  }
+  // Snout
+  parts.push({ geo: sphere(0.18, 12, 10, 0.65, 0.9, 0.9), pos: [0, 0.85, 0.5], color: w });
+  // Body
+  parts.push({ geo: sphere(0.42, 16, 14, 0.8, 1, 1.1), pos: [0, 0.2, 0], color: w });
+  // Legs — slim
+  parts.push({ geo: cylinder(0.08, 0.09, 0.3, 10), pos: [-0.18, -0.05, 0.15], color: w });
+  parts.push({ geo: cylinder(0.08, 0.09, 0.3, 10), pos: [0.18, -0.05, 0.15], color: w });
+  parts.push({ geo: cylinder(0.09, 0.1, 0.3, 10), pos: [-0.2, -0.05, -0.15], color: w });
+  parts.push({ geo: cylinder(0.09, 0.1, 0.3, 10), pos: [0.2, -0.05, -0.15], color: w });
+  // Hooves
+  parts.push({ geo: sphere(0.08, 8, 6, 0.5), pos: [-0.18, -0.18, 0.15], color: w });
+  parts.push({ geo: sphere(0.08, 8, 6, 0.5), pos: [0.18, -0.18, 0.15], color: w });
+  parts.push({ geo: sphere(0.08, 8, 6, 0.5), pos: [-0.2, -0.18, -0.15], color: w });
+  parts.push({ geo: sphere(0.08, 8, 6, 0.5), pos: [0.2, -0.18, -0.15], color: w });
+  // Tail — flowing
+  for (let i = 0; i < 7; i++) {
+    const t = i / 6;
+    const r = 0.07 + Math.sin(t * Math.PI) * 0.06;
+    parts.push({ geo: sphere(r, 8, 6), pos: [Math.sin(t * Math.PI * 1.5) * 0.08, 0.2 + t * 0.5, -0.45 - Math.sin(t * Math.PI * 0.5) * 0.3], color: w });
+  }
+  return parts;
+}
+
+// ==================== MONKEY ====================
+function buildMonkey() {
+  const parts = [];
+  // Head
+  parts.push({ geo: sphere(0.65, 24, 20), pos: [0, 1.12, 0], color: w });
+  // Big round ears on sides
+  parts.push({ geo: sphere(0.2, 12, 10), pos: [-0.6, 1.2, 0], color: w });
+  parts.push({ geo: sphere(0.2, 12, 10), pos: [0.6, 1.2, 0], color: w });
+  // Inner ears
+  parts.push({ geo: sphere(0.12, 10, 8), pos: [-0.6, 1.2, 0.08], color: w });
+  parts.push({ geo: sphere(0.12, 10, 8), pos: [0.6, 1.2, 0.08], color: w });
+  // Face area — lighter area around mouth
+  parts.push({ geo: sphere(0.3, 14, 12, 0.7, 1, 0.6), pos: [0, 0.92, 0.4], color: w });
+  // Nose
+  parts.push({ geo: sphere(0.06, 8, 6), pos: [0, 0.95, 0.62], color: w });
+  // Body — slim
+  parts.push({ geo: sphere(0.38, 16, 14, 0.85), pos: [0, 0.2, 0], color: w });
+  // Arms — long
+  parts.push({ geo: cylinder(0.08, 0.07, 0.35, 10), pos: [-0.32, 0.08, 0.05], color: w, rot: [0, 0, 0.3] });
+  parts.push({ geo: cylinder(0.08, 0.07, 0.35, 10), pos: [0.32, 0.08, 0.05], color: w, rot: [0, 0, -0.3] });
+  // Hands
+  parts.push({ geo: sphere(0.08, 8, 6), pos: [-0.42, -0.05, 0.08], color: w });
+  parts.push({ geo: sphere(0.08, 8, 6), pos: [0.42, -0.05, 0.08], color: w });
+  // Legs
+  parts.push({ geo: cylinder(0.1, 0.11, 0.25, 10), pos: [-0.18, -0.05, 0], color: w });
+  parts.push({ geo: cylinder(0.1, 0.11, 0.25, 10), pos: [0.18, -0.05, 0], color: w });
+  // Feet
+  parts.push({ geo: sphere(0.1, 8, 6, 0.5, 0.8, 1.2), pos: [-0.18, -0.15, 0.05], color: w });
+  parts.push({ geo: sphere(0.1, 8, 6, 0.5, 0.8, 1.2), pos: [0.18, -0.15, 0.05], color: w });
+  // Curly tail
+  for (let i = 0; i < 8; i++) {
+    const t = i / 7;
+    const angle = t * Math.PI * 2;
+    const r = 0.05 - t * 0.01;
+    parts.push({ geo: sphere(r, 6, 4), pos: [Math.sin(angle) * 0.12, 0.15 + t * 0.35, -0.38 - Math.cos(angle) * 0.12], color: w });
+  }
+  return parts;
+}
+
 // Build and write all models
 const models = [
   { name: 'cat', build: buildCat },
@@ -272,6 +606,16 @@ const models = [
   { name: 'rabbit', build: buildRabbit },
   { name: 'dog', build: buildDog },
   { name: 'penguin', build: buildPenguin },
+  { name: 'fox', build: buildFox },
+  { name: 'panda', build: buildPanda },
+  { name: 'frog', build: buildFrog },
+  { name: 'owl', build: buildOwl },
+  { name: 'lion', build: buildLion },
+  { name: 'duck', build: buildDuck },
+  { name: 'hamster', build: buildHamster },
+  { name: 'elephant', build: buildElephant },
+  { name: 'unicorn', build: buildUnicorn },
+  { name: 'monkey', build: buildMonkey },
 ];
 
 for (const { name, build } of models) {

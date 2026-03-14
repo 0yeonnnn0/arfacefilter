@@ -1,8 +1,8 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense, useCallback } from 'react';
 
 const ARScene = dynamic(
   () => import('@/components/ARScene/ARScene').then((mod) => mod.ARScene),
@@ -21,10 +21,15 @@ const ARScene = dynamic(
 
 function ARPageInner() {
   const params = useSearchParams();
+  const router = useRouter();
   const model = params.get('model') || 'cat';
   const modelPath = `/models/${model}.glb`;
 
-  return <ARScene modelPath={modelPath} />;
+  const handleBack = useCallback(() => {
+    router.push('/');
+  }, [router]);
+
+  return <ARScene modelPath={modelPath} onBack={handleBack} />;
 }
 
 export default function ARPage() {

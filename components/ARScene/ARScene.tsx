@@ -7,9 +7,10 @@ import { ResultView } from './ResultView';
 
 interface ARSceneProps {
   modelPath?: string;
+  onBack?: () => void;
 }
 
-export function ARScene({ modelPath = '/models/character.glb' }: ARSceneProps) {
+export function ARScene({ modelPath = '/models/character.glb', onBack }: ARSceneProps) {
   const {
     canvasRef,
     canvasKey,
@@ -39,7 +40,7 @@ export function ARScene({ modelPath = '/models/character.glb' }: ARSceneProps) {
   return (
     <div className="relative w-screen h-screen bg-black overflow-hidden">
       {phase === 'camera' && (
-        <CameraView key={`cam-${cameraKey}`} onCapture={handleCapture} hideUI={hideUI} />
+        <CameraView key={`cam-${cameraKey}`} onCapture={handleCapture} onBack={onBack} hideUI={hideUI} />
       )}
 
       <canvas
@@ -49,7 +50,7 @@ export function ARScene({ modelPath = '/models/character.glb' }: ARSceneProps) {
       />
 
       {phase === 'result' && (
-        <ResultView onSnapshot={takeSnapshot} onReset={handleReset} />
+        <ResultView onSnapshot={takeSnapshot} onReset={handleReset} onBack={onBack} />
       )}
     </div>
   );
