@@ -151,25 +151,20 @@ export function useARScene(modelPath: string = '/models/character.glb') {
     // Create a new canvas with watermark
     const out = document.createElement('canvas');
     const w = srcCanvas.width;
-    const barH = Math.round(w * 0.06);
+    const h = srcCanvas.height;
     out.width = w;
-    out.height = srcCanvas.height + barH;
+    out.height = h;
     const ctx = out.getContext('2d')!;
 
-    // Draw the 3D render
     ctx.drawImage(srcCanvas, 0, 0);
 
-    // Draw bottom bar
-    ctx.fillStyle = '#111118';
-    ctx.fillRect(0, srcCanvas.height, w, barH);
-
-    // Draw text
-    const fontSize = Math.round(barH * 0.42);
+    // Small watermark at bottom-right
+    const fontSize = Math.round(w * 0.022);
     ctx.font = `${fontSize}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
-    ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('by https://arfacefilter.vercel.app/', w / 2, srcCanvas.height + barH / 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('arfacefilter.vercel.app', w - fontSize * 0.6, h - fontSize * 0.5);
 
     const dataURL = out.toDataURL('image/png');
     const link = document.createElement('a');
