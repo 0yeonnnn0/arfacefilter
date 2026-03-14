@@ -48,6 +48,7 @@ export function CameraView({ onCapture, onBack, hideUI = false }: CameraViewProp
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [flash, setFlash] = useState(false);
+  const [countdown, setCountdown] = useState<number | null>(null);
   const throttleRef = useRef(0);
 
   const [guideRect, setGuideRect] = useState<{
@@ -177,7 +178,7 @@ export function CameraView({ onCapture, onBack, hideUI = false }: CameraViewProp
     };
   }, []);
 
-  const captureFrame = useCallback(() => {
+  const doCapture = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
 
@@ -214,6 +215,22 @@ export function CameraView({ onCapture, onBack, hideUI = false }: CameraViewProp
       onCapture(canvas);
     }, 350);
   }, [onCapture]);
+
+  const startCountdown = useCallback(() => {
+    if (countdown !== null) return;
+    setCountdown(3);
+    let count = 3;
+    const timer = setInterval(() => {
+      count--;
+      if (count > 0) {
+        setCountdown(count);
+      } else {
+        clearInterval(timer);
+        setCountdown(null);
+        doCapture();
+      }
+    }, 1000);
+  }, [countdown, doCapture]);
 
   return (
     <div ref={containerRef} className="relative w-full h-full bg-black">
@@ -302,7 +319,8 @@ export function CameraView({ onCapture, onBack, hideUI = false }: CameraViewProp
               {faceDetected ? '준비 완료!' : '얼굴을 화면에 맞춰주세요'}
             </p>
             <button
-              onClick={captureFrame}
+              onClick={startCountdown}
+              disabled={countdown !== null}
               className="relative w-20 h-20 rounded-full flex items-center justify-center touch-manipulation"
               aria-label="촬영"
             >
@@ -310,6 +328,19 @@ export function CameraView({ onCapture, onBack, hideUI = false }: CameraViewProp
               <div className="w-[62px] h-[62px] rounded-full bg-white active:scale-90 transition-transform" />
             </button>
           </div>
+        </div>
+      )}
+
+      {/* Countdown */}
+      {countdown !== null && (
+        <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none">
+          <span
+            key={countdown}
+            className="text-white text-[120px] sm:text-[160px] font-bold animate-ping"
+            style={{ animationDuration: '0.8s', textShadow: '0 0 40px rgba(0,0,0,0.5)' }}
+          >
+            {countdown}
+          </span>
         </div>
       )}
 
